@@ -11,6 +11,7 @@ module.exports = env => {
     mode: NODE_ENV,
     devtool: 'inline-source-map',
     devServer: {
+      allowedHosts: ['goodgame.ru'],
       host: 'localhost',
       port: 3030,
       stats: 'minimal',
