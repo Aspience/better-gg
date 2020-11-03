@@ -17,3 +17,4 @@ Browser extension for steam service [GoodGame](https:goodgame.ru/).
 1. Webpack
 1. Babel
 1. Prettier
+1. JSX
