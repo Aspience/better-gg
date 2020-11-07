@@ -12,6 +12,7 @@ Browser extension for steam service [GoodGame](https:goodgame.ru/).
 
 ##### Tech stack
 1. TypeScript
+1. JSX
 
 ##### Develop stack
 1. Webpack
