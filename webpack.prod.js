@@ -4,7 +4,7 @@ const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 
 const NODE_ENV = 'production';
 
-module.exports = env => {
+module.exports = () => {
   const webpackCommonConfig = require('./webpack.common.js')(NODE_ENV);
 
   return merge(webpackCommonConfig, {

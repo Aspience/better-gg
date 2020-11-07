@@ -13,7 +13,7 @@ const initMenu: InitMenu = ({ onClick }) => {
   if (menuList) {
     menuList.appendChild(
       <li onClick={onClick}>
-        <a>BetterGG</a>
+        <a href="#">BetterGG</a>
       </li>,
     );
   }
