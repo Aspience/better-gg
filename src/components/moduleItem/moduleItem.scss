@@ -1,0 +1,27 @@
+.item {
+  display: flex;
+  justify-content: space-between;
+
+  &:not(:last-of-type) {
+    margin-bottom: 12px;
+  }
+}
+
+.info {
+
+}
+
+.title {
+  font-size: 14px;
+}
+
+.description {
+  font-size: 12px;
+  font-weight: 300;
+  margin-top: 12px;
+}
+
+.action {
+  margin-left: 24px;
+  flex-shrink: 0;
+}

@@ -20,9 +20,11 @@ module.exports = NODE_ENV => {
     },
     resolve: {
       extensions: ['.js', '.jsx', '.ts', '.tsx', '.json'],
-      plugins: [new TsconfigPathsPlugin({
-        configFile: config.files.tsconfig,
-      })],
+      plugins: [
+        new TsconfigPathsPlugin({
+          configFile: config.files.tsconfig,
+        }),
+      ],
     },
     plugins: [
       new MiniCssExtractorPlugin({
@@ -76,7 +78,7 @@ module.exports = NODE_ENV => {
                   getLocalIdent(context, localIdentName, localName, options) {
                     // Use the filename or folder name, based on some uses the index.js / index.module.(css|scss|sass) project style
                     const fileNameOrFolder = context.resourcePath.match(
-                      /index\.module\.(css|scss|sass)$/
+                      /index\.module\.(css|scss|sass)$/,
                     )
                       ? '[folder]'
                       : '[name]';
@@ -85,17 +87,18 @@ module.exports = NODE_ENV => {
                       path.posix.relative(context.rootContext, context.resourcePath) + localName,
                       'md5',
                       'base64',
-                      5
+                      5,
                     );
                     // Use loaderUtils to find the file or folder name
                     const className = loaderUtils.interpolateName(
                       context,
                       fileNameOrFolder + '_' + localName + '_' + hash,
-                      options
+                      options,
                     );
                     // remove the .module that appears in every classname when based on the file.
                     return className.replace('.module_', '--');
-                  }
+                  },
+                  exportLocalsConvention: 'camelCase',
                 },
               },
             },

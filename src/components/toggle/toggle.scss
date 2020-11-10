@@ -1,0 +1,9 @@
+.toggle {
+  color: white;
+}
+
+.item {
+  &:hover {
+    cursor: pointer;
+  }
+}

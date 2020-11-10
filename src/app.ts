@@ -1,28 +1,21 @@
-import { Modal } from '@src/components/modal/modal';
-import { initMenu } from '@src/services/initMenu';
-import config from '@src/config';
+import { Modal } from '@src/components/modal';
+import { initMenu } from '@src/helpers/initMenu';
+import { renderModulesList } from '@src/helpers/renderModulesList';
 
 interface IApp {
-  show: () => void;
-  hide: () => void;
+  init: () => void;
 }
 
 class App implements IApp {
   private modal;
 
   constructor() {
-    this.modal = new Modal('better-gg');
-
-    initMenu({ onClick: () => this.show() });
+    this.modal = new Modal('better-gg', renderModulesList());
   }
 
-  show() {}
-
-  hide() {}
-
   init() {
-    console.log(typeof this.modal.render());
     document.querySelector('body')?.appendChild(this.modal.render());
+    initMenu({ onClick: () => this.modal.show() });
   }
 }
 
