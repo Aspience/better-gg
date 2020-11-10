@@ -9,6 +9,7 @@ const dist = resolve('dist');
 const ssl = resolve('ssl');
 
 const template = 'index.html';
+const tsconfig = 'tsconfig.json';
 
 module.exports = {
   paths: {
@@ -27,6 +28,7 @@ module.exports = {
   },
   files: {
     template,
+    tsconfig,
     bundle: 'better-gg-bundle.js',
   },
 };
