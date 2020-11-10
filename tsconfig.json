@@ -75,6 +75,7 @@
     "forceConsistentCasingInFileNames": true /* Disallow inconsistently-cased references to the same file. */
   },
   "files": [
-    "src/types/declare/styles.d.ts"
+    "src/types/declare/styles.d.ts",
+    "src/index.ts"
   ]
 }

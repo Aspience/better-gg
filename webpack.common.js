@@ -1,8 +1,10 @@
 const Webpack = require('webpack');
+const path = require('path');
 const TsconfigPathsPlugin = require('tsconfig-paths-webpack-plugin');
 const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
 const HtmlWebPackPlugin = require('html-webpack-plugin');
 const MiniCssExtractorPlugin = require('mini-css-extract-plugin');
+const loaderUtils = require('loader-utils');
 
 const config = require('./config.js');
 
@@ -18,10 +20,14 @@ module.exports = NODE_ENV => {
     },
     resolve: {
       extensions: ['.js', '.jsx', '.ts', '.tsx', '.json'],
-      plugins: [new TsconfigPathsPlugin()],
+      plugins: [new TsconfigPathsPlugin({
+        configFile: config.files.tsconfig,
+      })],
     },
     plugins: [
-      new MiniCssExtractorPlugin(),
+      new MiniCssExtractorPlugin({
+        filename: 'assets/styles.css',
+      }),
       new HtmlWebPackPlugin({
         template: config.entry.devServer,
         filename: config.files.template,
@@ -66,6 +72,31 @@ module.exports = NODE_ENV => {
               loader: 'css-loader',
               options: {
                 importLoaders: 2,
+                modules: {
+                  getLocalIdent(context, localIdentName, localName, options) {
+                    // Use the filename or folder name, based on some uses the index.js / index.module.(css|scss|sass) project style
+                    const fileNameOrFolder = context.resourcePath.match(
+                      /index\.module\.(css|scss|sass)$/
+                    )
+                      ? '[folder]'
+                      : '[name]';
+                    // Create a hash based on a the file location and class name. Will be unique across a project, and close to globally unique.
+                    const hash = loaderUtils.getHashDigest(
+                      path.posix.relative(context.rootContext, context.resourcePath) + localName,
+                      'md5',
+                      'base64',
+                      5
+                    );
+                    // Use loaderUtils to find the file or folder name
+                    const className = loaderUtils.interpolateName(
+                      context,
+                      fileNameOrFolder + '_' + localName + '_' + hash,
+                      options
+                    );
+                    // remove the .module that appears in every classname when based on the file.
+                    return className.replace('.module_', '--');
+                  }
+                },
               },
             },
             {
