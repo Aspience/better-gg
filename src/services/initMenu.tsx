@@ -9,7 +9,6 @@ type InitMenu = {
 const initMenu: InitMenu = ({ onClick }) => {
   const menuList = document.querySelector(config.menuSelector);
 
-  console.log('menuList', menuList);
   if (menuList) {
     menuList.appendChild(
       <li onClick={onClick}>

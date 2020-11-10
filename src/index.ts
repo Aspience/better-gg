@@ -1,9 +1,5 @@
-import { initMenu } from '@src/services/initMenu';
+import { App } from '@src/app';
 
-const onClickHandler = () => {};
+const app = new App();
 
-const initApp = () => {
-  initMenu({ onClick: onClickHandler });
-};
-
-initApp();
+app.init();

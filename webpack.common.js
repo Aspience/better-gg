@@ -2,6 +2,7 @@ const Webpack = require('webpack');
 const TsconfigPathsPlugin = require('tsconfig-paths-webpack-plugin');
 const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
 const HtmlWebPackPlugin = require('html-webpack-plugin');
+const MiniCssExtractorPlugin = require('mini-css-extract-plugin');
 
 const config = require('./config.js');
 
@@ -20,6 +21,7 @@ module.exports = NODE_ENV => {
       plugins: [new TsconfigPathsPlugin()],
     },
     plugins: [
+      new MiniCssExtractorPlugin(),
       new HtmlWebPackPlugin({
         template: config.entry.devServer,
         filename: config.files.template,
@@ -49,6 +51,33 @@ module.exports = NODE_ENV => {
           loader: 'babel-loader',
           include: config.paths.src,
           exclude: /node_modules/,
+        },
+        {
+          test: /\.(sa|sc|c)ss$/i,
+          exclude: [/node_modules/],
+          use: [
+            {
+              loader: MiniCssExtractorPlugin.loader,
+              options: {
+                // hmr: !isProd,
+              },
+            },
+            {
+              loader: 'css-loader',
+              options: {
+                importLoaders: 2,
+              },
+            },
+            {
+              loader: 'postcss-loader',
+              options: {
+                postcssOptions: {
+                  plugins: [require('autoprefixer')],
+                },
+              },
+            },
+            'sass-loader',
+          ],
         },
       ],
     },
