@@ -1,7 +1,7 @@
 # BetterGG
 Make GoodGame great again! :point_up: :pig:
 
-Browser extension for steam service [GoodGame](https:goodgame.ru/).
+Browser extension for stream service [GoodGame](https:://goodgame.ru/).
 
 ##### List of features
 1. ... coming soon :wink:
@@ -18,3 +18,4 @@ Browser extension for steam service [GoodGame](https:goodgame.ru/).
 1. Webpack
 1. Babel
 1. Prettier
+1. PostCSS
