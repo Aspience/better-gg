@@ -1,6 +1,7 @@
 import React from 'jsx-dom';
 
-import { FC } from '@src/shared/core/types';
+import { FC } from '@core/types';
+
 import styles from './modal.scss';
 
 type Props = {

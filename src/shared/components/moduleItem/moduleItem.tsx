@@ -1,7 +1,6 @@
 import React from 'jsx-dom';
 
-import { FC } from '@src/shared/core/types';
-
+import { FC } from '@core/types';
 import { Toggle } from '@src/shared/components/toggle';
 
 import styles from './moduleItem.scss';

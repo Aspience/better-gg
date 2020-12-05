@@ -1,6 +1,6 @@
 import React from 'jsx-dom';
 
-import { FC } from '@src/shared/core/types';
+import { FC } from '@core/types';
 import { Modal } from '@src/shared/components/modal';
 import { ModuleItem } from '@src/shared/components/moduleItem';
 import { modules } from '@src/modules';
