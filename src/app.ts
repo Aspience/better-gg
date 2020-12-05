@@ -7,10 +7,14 @@ interface IApp {
 }
 
 class App implements IApp {
-  private modal;
+  private modal: Modal;
 
   constructor() {
-    this.modal = new Modal('better-gg', renderModulesList());
+    this.modal = new Modal({
+      id: 'better-gg',
+      title: 'Better GG',
+      content: renderModulesList(),
+    });
   }
 
   init() {

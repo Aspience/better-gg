@@ -1,7 +1,8 @@
 import React from 'jsx-dom';
 
-import modules from '@src/modules';
 import { ModuleItem } from '@src/components/moduleItem';
+
+import { modules } from '@src/modules';
 
 import styles from '@src/styles/general.scss';
 
