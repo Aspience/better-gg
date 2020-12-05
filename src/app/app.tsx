@@ -11,12 +11,12 @@ import { initMenu } from './utils/initMenu';
 import styles from './styles.scss';
 
 export const App: FC = () => {
-  const modal = react({ isOpened: false });
+  const modalReact = react({ isOpened: false });
   const show = () => {
-    modal.isOpened = true;
+    modalReact.isOpened = true;
   };
   const hide = () => {
-    modal.isOpened = false;
+    modalReact.isOpened = false;
   };
 
   initMenu({ onClick: show });
@@ -37,7 +37,7 @@ export const App: FC = () => {
   };
 
   return (
-    <Modal title="Better GG" isOpened={modal.isOpened} show={show} hide={hide}>
+    <Modal title="Better GG" isOpened={modalReact.isOpened} show={show} hide={hide}>
       {renderModulesList()}
     </Modal>
   );
