@@ -1,6 +1,6 @@
 import React from 'jsx-dom';
 
-import config from '@src/config';
+import { config } from '../config/config';
 
 type InitMenu = {
   (params: { onClick: () => void }): void;
