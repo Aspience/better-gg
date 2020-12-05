@@ -1,4 +1,4 @@
-import { Module } from '@src/types/models';
+import { Module } from '@src/modules/types';
 
 export const smilesCompleteModule: Module = {
   name: 'smilesComplete',
