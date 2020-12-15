@@ -1,5 +1,3 @@
-import React from 'jsx-dom';
-
 import { config } from '../config/config';
 
 type InitMenu = {
@@ -10,11 +8,15 @@ const initMenu: InitMenu = ({ onClick }) => {
   const menuList = document.querySelector(config.menuSelector);
 
   if (menuList) {
-    menuList.appendChild(
-      <li onClick={onClick}>
-        <a href="#">BetterGG</a>
-      </li>,
-    );
+    const linkElement = document.createElement('a');
+    linkElement.addEventListener('click', onClick);
+    linkElement.innerText = 'BetterGG';
+    linkElement.href = '#';
+
+    const menuElement = document.createElement('li');
+    menuElement.appendChild(linkElement);
+
+    menuList.appendChild(menuElement);
   }
 };
 

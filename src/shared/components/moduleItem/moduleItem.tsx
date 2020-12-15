@@ -1,37 +1,37 @@
-import React from 'jsx-dom';
+import { defineComponent, FunctionalComponent } from 'vue';
 
-import { FC } from '@core/types';
 import { Toggle } from '@src/shared/components/toggle';
-
 import styles from './moduleItem.scss';
 
 type Props = {
   title: string;
   description?: string;
-  onEnable: () => void;
-  onDisable: () => void;
+  onEnable: Function;
+  onDisable: Function;
 };
 
-export const ModuleItem: FC<Props> = ({ title, description, onDisable, onEnable }) => {
-  return (
-    <li className={styles.item}>
-      <div className={styles.info}>
-        <div className={styles.title}>{title}</div>
-        {description && <div className={styles.description}>{description}</div>}
-      </div>
-      <div className={styles.action}>
-        <Toggle
-          state="left"
-          left={{
-            title: 'Выкл',
-            onClick: onDisable,
-          }}
-          right={{
-            title: 'Вкл',
-            onClick: onEnable,
-          }}
-        />
-      </div>
-    </li>
-  );
-};
+export const ModuleItem = defineComponent<Props>({
+  setup({ title, description, onEnable, onDisable }) {
+    return () => (
+      <li class={styles.item}>
+        <div class={styles.info}>
+          <div class={styles.title}>{title}</div>
+          {description && <div class={styles.description}>{description}</div>}
+        </div>
+        <div class={styles.action}>
+          <Toggle
+            state="left"
+            left={{
+              title: 'Выкл',
+              onClick: onDisable,
+            }}
+            right={{
+              title: 'Вкл',
+              onClick: onEnable,
+            }}
+          />
+        </div>
+      </li>
+    );
+  },
+});

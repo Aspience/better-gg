@@ -21,7 +21,7 @@ module.exports = {
     ssl,
   },
   entry: {
-    app: path.join(src, 'index.tsx'),
+    app: path.join(src, 'index.ts'),
     devServer: path.join(devServer, template),
     privateKey: path.join(ssl, 'private.key'),
     privateCrt: path.join(ssl, 'private.crt'),

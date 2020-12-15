@@ -1,32 +1,32 @@
-import React from 'jsx-dom';
-
-import { FC } from '@core/types';
+import { defineComponent } from 'vue';
 
 import styles from './modal.scss';
 
 type Props = {
   title: string;
   isOpened: boolean;
-  show: () => void;
-  hide: () => void;
+  show: Function;
+  hide: Function;
 };
 
-export const Modal: FC<Props> = ({ title, isOpened, show, hide, children }) => {
-  return (
-    <div className={styles.modal} style={{ display: isOpened ? 'block' : 'none' }}>
-      <div className={styles.content}>
-        <div className={styles.title}>{title}</div>
-        {children}
+export const Modal = defineComponent<Props>({
+  setup({ isOpened, show, hide, title }, context) {
+    return () => (
+      <div class={styles.modal} style={{ display: isOpened ? 'block' : 'none' }}>
+        <div class={styles.content}>
+          <div class={styles.title}>{title}</div>
+          {context.slots}
+        </div>
+        <div
+          class={styles.close}
+          onClick={e => {
+            e.preventDefault();
+            hide();
+          }}
+        >
+          <div class="icon icon-close3 close" />
+        </div>
       </div>
-      <div
-        className={styles.close}
-        onClick={e => {
-          e.preventDefault();
-          hide();
-        }}
-      >
-        <div className="icon icon-close3 close" />
-      </div>
-    </div>
-  );
-};
+    );
+  },
+});
