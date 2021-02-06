@@ -51,20 +51,20 @@ export const App = defineComponent({
       const { name } = module;
       module.onInit(() => {
         this.store.modules[name].enabled = true;
+        dispatchModuleSettings(name, { enabled: true });
       });
-      dispatchModuleSettings(name, { enabled: true });
     },
     onModuleDisable(module: Module<ModuleName>) {
       const { name } = module;
       module.onDestroy(() => {
         this.store.modules[name].enabled = false;
+        dispatchModuleSettings(name, { enabled: false });
       });
-      dispatchModuleSettings(name, { enabled: false });
     },
   },
   render() {
     return (
-      <Modal title="Better GG" isOpened={this.appShown} show={this.showModal} hide={this.hideModal}>
+      <Modal title="BetterGG" isOpened={this.appShown} show={this.showModal} hide={this.hideModal}>
         <ul class={styles.modulesList}>
           {modules.map(module => {
             const { title, description, name } = module;
