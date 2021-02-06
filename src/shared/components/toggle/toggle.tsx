@@ -1,4 +1,4 @@
-import { defineComponent } from 'vue';
+import { FunctionalComponent } from 'vue';
 
 import styles from './toggle.scss';
 
@@ -15,20 +15,15 @@ type Props = {
   right: ToggleItem;
 };
 
-export const Toggle = defineComponent<Props>({
-  setup({ state, left, right }) {
-    return () => (
-      <div class={`mobile-switch ${styles.toggle}`}>
-        <a class={`${state === 'left' && 'active'} ${styles.item}`} onClick={() => left.onClick()}>
-          {left.title}
-        </a>
-        <a
-          class={`${state === 'right' && 'active'} ${styles.item}`}
-          onClick={() => right.onClick()}
-        >
-          {right.title}
-        </a>
-      </div>
-    );
-  },
-});
+export const Toggle: FunctionalComponent<Props> = ({ left, right, state }) => {
+  return (
+    <div class={`mobile-switch ${styles.toggle}`}>
+      <a class={`${state === 'left' && 'active'} ${styles.item}`} onClick={() => left.onClick()}>
+        {left.title}
+      </a>
+      <a class={`${state === 'right' && 'active'} ${styles.item}`} onClick={() => right.onClick()}>
+        {right.title}
+      </a>
+    </div>
+  );
+};

@@ -1,7 +1,6 @@
-import { Module } from '@src/modules/types';
-
 import { smilesCompleteModule } from './smilesComplete';
+import { deletedChatMessages } from './deletedChatMessages';
 
-const modules: Module[] = [smilesCompleteModule];
+const modules = [smilesCompleteModule, deletedChatMessages];
 
 export { modules };

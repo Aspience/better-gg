@@ -1,4 +1,4 @@
-import { defineComponent } from 'vue';
+import { FunctionalComponent } from 'vue';
 
 import styles from './modal.scss';
 
@@ -9,24 +9,22 @@ type Props = {
   hide: Function;
 };
 
-export const Modal = defineComponent<Props>({
-  setup({ isOpened, show, hide, title }, context) {
-    return () => (
-      <div class={styles.modal} style={{ display: isOpened ? 'block' : 'none' }}>
-        <div class={styles.content}>
-          <div class={styles.title}>{title}</div>
-          {context.slots}
-        </div>
-        <div
-          class={styles.close}
-          onClick={e => {
-            e.preventDefault();
-            hide();
-          }}
-        >
-          <div class="icon icon-close3 close" />
-        </div>
+export const Modal: FunctionalComponent<Props> = ({ isOpened, show, hide, title }, context) => {
+  return (
+    <div class={styles.modal} style={{ display: isOpened ? 'block' : 'none' }}>
+      <div class={styles.content}>
+        <div class={styles.title}>{title}</div>
+        {context.slots.default?.()}
       </div>
-    );
-  },
-});
+      <div
+        class={styles.close}
+        onClick={e => {
+          e.preventDefault();
+          hide();
+        }}
+      >
+        <div class="icon icon-close3 close" />
+      </div>
+    </div>
+  );
+};
