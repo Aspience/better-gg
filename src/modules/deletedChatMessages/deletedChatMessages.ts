@@ -11,10 +11,10 @@ const modifyNode = (node: HTMLDivElement): Node => {
 };
 
 const insertAfter = (parent: Node, referenceNode: Node | null, newNode: Node) => {
-  if (referenceNode === null) {
+  if (referenceNode === null || referenceNode.parentNode === null) {
     parent.appendChild(newNode);
   } else {
-    referenceNode.parentNode?.insertBefore(newNode, referenceNode.nextSibling);
+    referenceNode.parentNode.insertBefore(newNode, referenceNode.nextSibling);
   }
 };
 const callback: MutationCallback = (mutationsList, observer) => {
